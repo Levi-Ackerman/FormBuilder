@@ -28,6 +28,14 @@ class Device(threading.Thread):
         while popen != None and popen.stdout is not None and popen.poll() is None:
             try:
                 line = popen.stdout.readline()
-
+                if "keyword" in line :
+                    self.listener.onLogout()
+                    pass
+                elif "keywords" in line :
+                    self.listener.onSended()
+                    pass
+                elif "keywordrecv" in line:
+                    self.listener.onRecved();
+                    pass
             except Exception as e:
                 print(e)

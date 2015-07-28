@@ -4,3 +4,9 @@ class NotifListner(object):
     @abstractmethod
     def onLogout(self,deviceName):
         pass
+    @abstractmethod
+    def onSended(self):
+        pass
+    @abstractmethod
+    def onRecved(self):
+        pass

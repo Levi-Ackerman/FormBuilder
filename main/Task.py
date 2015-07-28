@@ -18,6 +18,11 @@ class Task(NotifListener):
                 self.status = 2
                 self.deviceSend.sendMsg()
 
+    def onSended(self):
+        pass
+
+    def onRecved(self):
+        pass
     def doTest(self):
         if self.status == 0:
             self.status = 1

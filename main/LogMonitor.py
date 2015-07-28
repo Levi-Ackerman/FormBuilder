@@ -7,7 +7,7 @@ __author__ = 'jsonlee'
 class LogMonitor(threading.Thread):
     def __init__(self,deviceName):
         threading.Thread.__init__(self)
-        self.command = "adb "+deviceName+" logcat"
+        self.command = "adb -s "+deviceName+" logcat"
         pass
     def run(self):
         popen = subprocess.Popen(self.command.split(" "),stdout=subprocess.PIPE,shell=False)
