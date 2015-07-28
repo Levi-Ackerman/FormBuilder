@@ -1,7 +1,10 @@
+import main
+
 __author__ = 'jsonlee'
-import NotifListener;
-import Device
-class Task(NotifListener):
+from main.Device import Device
+from main.NotifListener import NotifListner
+from abc import abstractmethod
+class Task(NotifListner):
     def __init__(self):
         self.deviceSend = Device('88e3ab7bf0cb')
         self.deviceRecv = Device('')
@@ -9,24 +12,20 @@ class Task(NotifListener):
         self.deviceSend.setNotifListener(self)
         self.deviceRecv.start()
         self.deviceSend.start()
-        self.reset()
-        self.doTest()
 
     def onLogout(self,deviceName):
-        if self.status == 1:
-            if deviceName == self.deviceRecv.getName():
-                self.status = 2
-                self.deviceSend.sendMsg()
+        if deviceName == self.deviceRecv.getName():
+            self.deviceSend.sendMsg()
 
     def onSended(self):
-        pass
 
+        pass
     def onRecved(self):
+        self.deviceSend.sendMsg()
+        pass
+    def onTimeout(self):
+        self.deviceSend.sendMsg()
         pass
     def doTest(self):
-        if self.status == 0:
-            self.status = 1
-            self.deviceRecv.logout()
-
-    def reset(self):
-        self.status = 0
+        self.deviceRecv.logout()
+        pass

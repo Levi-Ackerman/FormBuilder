@@ -10,3 +10,6 @@ class NotifListner(object):
     @abstractmethod
     def onRecved(self):
         pass
+    @abstractmethod
+    def onTimeout(self):
+        pass
